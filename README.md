@@ -142,9 +142,6 @@ This provides a list of coefficients that can later be used to calculate arbitra
 to be interpolated, and is also subject to the aforementioned Runge Phenomenon.
 
 
-### Divided Differences
-
-
 ## Splines
 
 
