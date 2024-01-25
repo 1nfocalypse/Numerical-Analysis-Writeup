@@ -143,7 +143,9 @@ to be interpolated, and is also subject to the aforementioned Runge Phenomenon.
 
 
 ## Splines
-
+Splines are an alternative means of interpolating data via piecewise functions. Splines are useful because they avoid the Runge Phenomenon that occurs in interpolation, as well as can
+maintain certain characteristics, such as differentiability. Splines find heavy use in contemporary computing, seeing heavy employment in computer graphics, engineering, CAD software, 
+Finite Element Analysis, Data Visualization, game development, and more.
 
 ### Natural Cubic Splines
 
