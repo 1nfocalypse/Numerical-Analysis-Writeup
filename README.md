@@ -94,11 +94,26 @@ As a note, it's highly recommended to check for a tolerance instead of absolute 
 The Bisection Method is particularly slow, executing in logarithmic time, however, quite robust.
 
 ### Newton's Method
-Newton's Method utilizes the derivative of a function in order to create tangent lines. These tangent lines intersect with y = 0, 
+Newton's Method utilizes the derivative of a function in order to create tangent lines. These tangent lines intersect with y = 0, which then restarts the iteration. The algorithm requires
+an initial guess $x_{0}$, a function, and the derivative of said function. Failure conditions for the function are cases where the initial guess lies on a minimum or maximum value in the
+original function, or when the original function is not differentiable. It also slows down considerably when the original function is expensive to accurately differentiate.
+The pseudocode for the algorithm is as follows:
 
+- if f(x) == 0 return x // if guess is a root, return
+- while f(x) > 0.001 or f(x) < -0.001 // set tolerance bounds aka convergence critera
+- x = x - (f(x) / f'(x)) // establish new x
+
+This pseudocode performs no checks for validity, but edge cases aside, will function. This algorithm performs best when the initial guess is close to the actual root. As such, it is not 
+uncommon to find hybrid implementations featuring the bisection method to provide a very rough approximation quickly, and then handing that approximation to a Newton's method algorithm to
+find a much more precise approximation. Newton's method converges in quadratic time, which is markedly superior to the linear convergence of the Bisection method. 
 
 ## Interpolation
-
+Interpolation is a technique used to find a polynomial that intersects a given set of points, with at most degree $n$, where $n$ is the number of given points. This is given by the 
+existence and uniqueness theorem for interpolating polynomials, which states that there necessarily exists a unique polynomial of at most degree $n$. Interpolation has many uses in that
+it provides a polynomial that fits data, however, it also has a very unique problem in the sense that it is subject to something called the Runge Phenomenon, which causes intense
+oscillations in the polynomial when a high number of nodes are interpolated, generating a great deal of noise. This is fixed via something called splines, which will be touched on later.
+This is not to say interpolation does not find use; it is still heavily employed in graphics, data analysis, physics, engineering, signal processing, and more, and as such, will be 
+discussed below. 
 
 ### Lagrange Form
 
