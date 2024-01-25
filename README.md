@@ -212,7 +212,10 @@ Newton's Method utilizes the derivative of a function in order to create tangent
 
 
 ## Conclusion
-
+Numerical analysis is a very widely utilized and deep field, with active research occurring globally today. This writeup is far from all-encompassing, however, that was not its purpose.
+I hope that it has inspired you to further look into the subject, along given you more tools for approaching problems and solving them. As mentioned, please check out my python library,
+[EnkiNum](https://github.com/1nfocalypse/EnkiNum), as it implements these techniques in an approachable way such that the reader can understand application. If you have any concerns or 
+questions, please open an issue, pull request, or otherwise contact me, and I will be happy to resolve them. 
 
 ## Thanks and Acknowledgements
 Thank you for taking the time to read this writeup! This has been a one-person project thus far, and as such, there may be errors. If you find one, please submit a pull request. If it's
