@@ -80,7 +80,7 @@ useful in exemplifying differences in speed from different algorithms that arriv
 The Bisection Method, or alternatively, the Binary Search method, is a logarithmic time algorithm used to locate roots of nonlinear functions. It operates by taking a function, a lower x
 value a, and an upper x value b. Necessarily, there must exist a root between these two bounds. A simple test for this is to evaluate if the function changes sign between them, i.e.
 f(a) > 0 and f(b) < 0 or f(a) < 0 and f(b) > 0. Once this has been established, the following algorithm is conducted.
-
+```
 - for n in n_max // set a number of iterations
 - c = (a + b) / 2 // calculate the midpoint
 - if f(c) == 0 return c // if the midpoint is 0, a root has been found.
@@ -89,7 +89,7 @@ f(a) > 0 and f(b) < 0 or f(a) < 0 and f(b) > 0. Once this has been established, 
 - a = c
 - else
 - b = c
-
+```
 As a note, it's highly recommended to check for a tolerance instead of absolute equality on step (3) of the algorithm in order to prevent excessive time spent finding a solution.
 The Bisection Method is particularly slow, executing in logarithmic time, however, quite robust.
 
@@ -98,11 +98,11 @@ Newton's Method utilizes the derivative of a function in order to create tangent
 an initial guess $x_{0}$, a function, and the derivative of said function. Failure conditions for the function are cases where the initial guess lies on a minimum or maximum value in the
 original function, or when the original function is not differentiable. It also slows down considerably when the original function is expensive to accurately differentiate.
 The pseudocode for the algorithm is as follows:
-
+```
 - if f(x) == 0 return x // if guess is a root, return
 - while f(x) > 0.001 or f(x) < -0.001 // set tolerance bounds aka convergence critera
 - x = x - (f(x) / f'(x)) // establish new x
-
+```
 This pseudocode performs no checks for validity, but edge cases aside, will function. This algorithm performs best when the initial guess is close to the actual root. As such, it is not 
 uncommon to find hybrid implementations featuring the bisection method to provide a very rough approximation quickly, and then handing that approximation to a Newton's method algorithm to
 find a much more precise approximation. Newton's method converges in quadratic time, which is markedly superior to the linear convergence of the Bisection method. 
@@ -116,6 +116,30 @@ This is not to say interpolation does not find use; it is still heavily employed
 discussed below. 
 
 ### Lagrange Form
+The Lagrange Form of an interpolating polynomial is a relatively straightforward means of interpolation. However, it does not adapt well, with the addition of any new points requiring
+a complete recalculation of the polynomial and allowing for larger degrees of error. However, it adequately serves for low-degree tasks. Lagrangian Interpolation is described as follows:
+
+The Lagrangian Interpolating Polynomial is comprised of Lagrange basis polynomials $L_{n}$ and the y values of the data points as 
+$P(x)=L_{0}(x) * y_{0} +L_{1}(x)*y_{1}+…+L_{n}(x)*y_{n}$.
+
+Lagrange basis polynomials are defined as $L_i(x) = \displaystyle\prod_{j=0, j \neq i}^{n}\frac{x-x_{i}}{x_{i}-x_{j}}$. This gives them the unique quality of the Kronecker delta, meaning that in 
+the case that $i=j$, the value is 1, and is otherwise 0, meaning that only one term survives when a point is evaulated, guaranteeing interpolation. Pseudocode for Lagrange interpolation
+is as follows, creating a list of the Lagrangian Basis Polynomials as coefficients to be used later.
+```
+- Requires x values, y values
+- n = length(x_values)
+- coefficients = initialize_list_of_zeros(n)
+- for i from 0 to n-1:
+-   term = y_values\[i]
+-   for j from 0 to n-1:
+-       if j != i:
+-       term = term * 1 / (x_values[i] - x_values[j])
+-   for k from 0 to n-1:
+-       if k != i:
+-       coefficients[k] = coefficients[k] + term * (-x_values[k]) / (x_values[i] - x_values[k])
+```
+This provides a list of coefficients that can later be used to calculate arbitrary values along the function. However, these will need to be recalculated if more points are added that need
+to be interpolated, and is also subject to the aforementioned Runge Phenomenon.
 
 
 ### Divided Differences
