@@ -148,16 +148,18 @@ maintain certain characteristics, such as differentiability. Splines find heavy 
 Finite Element Analysis, Data Visualization, game development, and more.
 
 ### Natural Cubic Splines
+Natural Cubic Splines are both optimal and unique given a set of points. They are optimal in the sense that they minimize the curve required to get between two points, unique in the sense
 that they are thus minimized, and cubic in the sense that the piecewise polynomials are cubic in nature. To further simplify, Natural Cubic Splines are a set of cubic polynomials between
 a set of points that interpolate these points while minimizing the amount of bend between them, which in turn makes this interpolation unique. Natural Cubic Splines, as a result of strict
 boundary conditions and their cubic nature, must have $C^{2}$ continuity. The boundary conditions for Natural Cubic Splines are such that there is zero curvature at the given points, such
 that it remains twice differentiable. The equation for a Natural Cubic Spline is defined as:
 
-$S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3$
+$S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3
 
 This results in a tridiagonal baneded matrix, which can be solved for the coefficients $a_{i}, b_{i}, c_{i}, d_{i}$.
 
 Pseudocode for solving for the coefficients of a spline is as follows:
+
 
 ### B Splines
 
