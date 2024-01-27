@@ -156,9 +156,23 @@ that it remains twice differentiable. The equation for a Natural Cubic Spline is
 
 $S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3$
 
-This results in a tridiagonal baneded matrix, which can be solved for the coefficients $a_{i}, b_{i}, c_{i}, d_{i}$.
+This results in a tridiagonal banded matrix, which can be solved for the coefficients $a_{i}, b_{i}, c_{i}, d_{i}$.
 
 Pseudocode for solving for the coefficients of a spline is as follows:
+```
+- Requires data points (x,y), and real arrays x,y,z such that x vals are in x, y vals in y, and z is empty.
+- n = size(data) - 1
+- allocate arrays d, e, f, g w/ size n-1
+- for i in range(n-1)
+-   d\[i] = x\[i + 1] - x\[i]
+-   e\[i] = (y\[i+1]-y\[i])/d\[i]
+- f\[1] = 2(a\[0] + a\[1])
+- g\[1] = 6(e\[1] - e\[0])
+- for i = 2 in range(n-1)
+-   f[i] = 2(d[i] + d[i-1]) - ((d[i-1] * d[i-1]) / f[i-1])
+-   g[i] = 6()
+
+```
 
 
 ### B Splines
