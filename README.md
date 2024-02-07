@@ -214,7 +214,7 @@ Pseudocode for solving for the coefficients of a spline is as follows:
 ### Scaled Partial Pivoting
 
 
-### Deteriminants
+### Determinants
 
 
 ### Tridiagonal and Banded Matrices
