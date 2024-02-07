@@ -217,6 +217,9 @@ Pseudocode for solving for the coefficients of a spline is as follows:
 ### Determinants
 
 
+### Computing Inverses
+
+
 ### Tridiagonal and Banded Matrices
 
 
