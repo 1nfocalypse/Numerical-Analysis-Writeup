@@ -230,9 +230,11 @@ discusses methods to approximate derivatives within the bounds of computers.
 
 
 ## Linear Systems
-
-
-### Naive Gaussian Elimination
+Linear systems frequently occur in natural life, engineering, computer graphics, flight, and many other facets of modern life. As such, the ability to solve non-trivial linear systems 
+with computers is incredibly important in many aspects of contemporary life. While seemingly innocuous enough, linear systems are able to pose a distinct challenge to computers due to
+their ability to contain small values and the need for subtraction as a method of solving these systems. From this, we necessarily observe that traditional, naive Gaussian elimination,
+as you likely learned in your linear algebra course, is not sufficient. There are other methods available, however, that do not encounter the same pitfalls that you can imagine Naive
+Gaussian Elimination does, which are further discussed below, along with some notes on various matrix forms, operations, and characteristics. 
 
 
 ### Scaled Partial Pivoting
