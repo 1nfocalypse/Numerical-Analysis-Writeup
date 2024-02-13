@@ -154,7 +154,7 @@ a set of points that interpolate these points while minimizing the amount of ben
 boundary conditions and their cubic nature, must have $C^{2}$ continuity. The boundary conditions for Natural Cubic Splines are such that there is zero curvature at the given points, such
 that it remains twice differentiable. The equation for a Natural Cubic Spline is defined as:
 
-$S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3$
+$S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3
 
 This results in a tridiagonal banded matrix, which can be solved for the coefficients $a_{i}, b_{i}, c_{i}, d_{i}$.
 
@@ -164,16 +164,36 @@ Pseudocode for solving for the coefficients of a spline is as follows:
 - n = size(data) - 1
 - allocate arrays d, e, f, g w/ size n-1
 - for i in range(n-1)
--   d\[i] = x\[i + 1] - x\[i]
--   e\[i] = (y\[i+1]-y\[i])/d\[i]
-- f\[1] = 2(a\[0] + a\[1])
-- g\[1] = 6(e\[1] - e\[0])
+-   d[i] = x[i + 1] - x[i]
+-   e[i] = (y[i+1]-y[i])/d[i]
+- f[1] = 2(a[0] + a[1])
+- g[1] = 6(e[1] - e[0])
 - for i = 2 in range(n-1)
 -   f[i] = 2(d[i] + d[i-1]) - ((d[i-1] * d[i-1]) / f[i-1])
--   g[i] = 6()
-
+-   g[i] = 6(e[i] -e[i-1]) - ((d[i-1] * g[i-1]) / f[i-1])
+- z[n] = 0
+- for i in range(n-1, 1, -1)
+-   z[i] = (g[i] - (x[i] * z[i+1]))/f[i]
+- z[0] = 0
 ```
 
+Once this algorithm has been run, you are able to evaluate the value of the spline at actual locations. The following pseudocode details how this is accomplished.
+```
+- Requires n data points, real arrays x,y,z, h, which is step size, and x, which is the position to be evaluated
+- int tmploc
+- for i in range(n-1, 0, ,-1)
+-   if x - t[i] > 0
+-       tmploc = i
+-       break;
+- i = tmploc
+- h = t[tmploc + 1] - t[tmploc]
+- tmp = (z[i] / 2) + (((x - t[i]) * (z[i+1] - z[i]))/(6 * h))
+- tmp = -(h/6)(z[i+1] + 2 * z[i]) + ((y[i+1] - y[i])/h) + ((x-t[i]) * tmp)
+- return y[i] + ((x - t[i]) * tmp)
+```
+
+At this point, you will have constructed a natural cubic spline for a function as well as a means to locate specific points on the spline. This allows for interpolation to occur without
+the aforementioned Runge Phenomenon, as well as ensures $C^{2}$ differentiability.
 
 ### B Splines
 
