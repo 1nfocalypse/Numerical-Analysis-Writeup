@@ -154,7 +154,7 @@ a set of points that interpolate these points while minimizing the amount of ben
 boundary conditions and their cubic nature, must have $C^{2}$ continuity. The boundary conditions for Natural Cubic Splines are such that there is zero curvature at the given points, such
 that it remains twice differentiable. The equation for a Natural Cubic Spline is defined as:
 
-$S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3
+$S_{i}(x) = a_{i} + b_{i}(x-x_{i}) + c_{i}(x-x_{i})^{2} + d_{i}(x-x_{i})^3$
 
 This results in a tridiagonal banded matrix, which can be solved for the coefficients $a_{i}, b_{i}, c_{i}, d_{i}$.
 
