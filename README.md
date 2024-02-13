@@ -202,7 +202,11 @@ the aforementioned Runge Phenomenon, as well as ensures $C^{2}$ differentiabilit
 
 
 ## Numerical Derivatives
-
+Numerical differentiation is highly pertinent, as calculus is often imperative in engineering tasks and simulations. However, given the discrete nature of computers, we find ourselves with
+limited precision, meaning that the analytic path towards calculus implementation is not possible. Some may be thinking back to their introductory calculus course, remembering the basic
+definition of a derivative as $f(x) = \frac{f(x + h) - f(x)}{h}$. However, in the context of this writeup, the problem becomes immediately evident with this definition. For a sufficiently
+small value $h$, we find ourselves quickly speeding down the road to errors and instability. How then, are we expected to find derivatives of continuous functions? The rest of this section
+discusses methods to approximate derivatives within the bounds of computers.
 
 ### Truncated Taylor Series
 
