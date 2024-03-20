@@ -196,7 +196,17 @@ At this point, you will have constructed a natural cubic spline for a function a
 the aforementioned Runge Phenomenon, as well as ensures $C^{2}$ differentiability.
 
 ### B Splines
+B splines, or Basis Splines, also known as Bell Splines from their bell shape in higher orders, are another form of spline, utilized for similar purposes as NCSs. However, B splines of higher 
+order are able to offer more control over differentiability than Natural Cubics, along with some finer control of curve type. These properties have made them popular in production and research
+where higher orders or finer control are needed, and optimality of curve is not. B splines derive their name from the fact that they form a basis of spline functions. Drawing back from linear
+algebra, this denotes that all possible spline functions can be built from linear combinations of B splines, and for each function, a unique linear combination of B splines exists to form it.
+B splines are defined recursively by the Cox-de Boor function, which is elaborated below along with the recursive definition for higher order splines.
 
+A basis spline $B^{0}\_{i}$ is defined as $\\{ 1 : t_{i} \leq x < t_{i + 1} || 0 : otherwise\\}$.
+From this, we find the recursive definition:
+
+
+$B^{k}\_{i}(x) = (\frac{x-t_{i}}{t_{i + k}-t_{i}})B^{k-1}\_{i}(x) + (\frac{t_{i+k+1} - x}{t_{i + k + 1} - t_{i + 1}})B^{k-1}\_{i+1}(x)$ for $k \geq 1$.
 
 ### Bezier Curves
 
