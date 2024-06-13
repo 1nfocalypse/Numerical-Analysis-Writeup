@@ -218,6 +218,9 @@ definition of a derivative as $f(x) = \frac{f(x + h) - f(x)}{h}$. However, in th
 small value $h$, we find ourselves quickly speeding down the road to errors and instability. How then, are we expected to find derivatives of continuous functions? The rest of this section
 discusses methods to approximate derivatives within the bounds of computers.
 
+### Symmetric Differences
+
+
 ### Truncated Taylor Series
 
 
